@@ -40,13 +40,6 @@ public class PilotController {
 		return "add";
 	}
 	
-//	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
-//	private String viewByLicenseNumber(@RequestParam("licenseNumber") String licenseNumber, Model model) {
-//		PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-//		model.addAttribute("pilot", archive);
-//		return "view";
-//	}
-	
 	@RequestMapping("/pilot/view")
 	public String viewall(@RequestParam("licenseNumber") String licenseNumber, Model model) {
 		PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
@@ -56,6 +49,13 @@ public class PilotController {
 		
 		model.addAttribute("listFlight", listFlight);
 		return "view";
+	}
+	
+	@RequestMapping("/pilot/delete")
+	public String delete(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+		pilotService.deletePilot(licenseNumber);
+		
+		return "delete";
 	}
 	
 }
