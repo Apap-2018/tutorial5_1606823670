@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
+/*
  * PilotController
  */
 @Controller
@@ -36,4 +36,12 @@ public class PilotController {
 		pilotService.addPilot(pilot);
 		return "add";
 	}
+	
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+	private String viewByLicenseNumber(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+		PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		model.addAttribute("pilot", archive);
+		return "view-pilot";
+	}
+	
 }
