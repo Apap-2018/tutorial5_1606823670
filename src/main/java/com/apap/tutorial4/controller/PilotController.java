@@ -1,7 +1,10 @@
 package com.apap.tutorial4.controller;
 
+import com.apap.tutorial4.model.FlightModel;
 import com.apap.tutorial4.model.PilotModel;
 import com.apap.tutorial4.service.PilotService;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,11 +40,22 @@ public class PilotController {
 		return "add";
 	}
 	
-	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
-	private String viewByLicenseNumber(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+//	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+//	private String viewByLicenseNumber(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+//		PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+//		model.addAttribute("pilot", archive);
+//		return "view";
+//	}
+	
+	@RequestMapping("/pilot/view")
+	public String viewall(@RequestParam("licenseNumber") String licenseNumber, Model model) {
 		PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		model.addAttribute("pilot", archive);
-		return "view-pilot";
+		
+		List<FlightModel> listFlight = pilotService.getPilotDetailByLicenseNumber(licenseNumber).getPilotFlight();
+		
+		model.addAttribute("listFlight", listFlight);
+		return "view";
 	}
 	
 }
