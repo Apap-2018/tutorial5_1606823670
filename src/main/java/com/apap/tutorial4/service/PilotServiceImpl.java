@@ -29,7 +29,8 @@ public class PilotServiceImpl implements PilotService{
 	}
 	
 	@Override
-	public void deletePilot(String licenseNumber) {
-		pilotDB.delete(pilotDB.findByLicenseNumber(licenseNumber));
+	public void deletePilotByLicenseNumber(String licenseNumber) {
+		PilotModel pilot = pilotDB.findByLicenseNumber(licenseNumber);
+		pilotDB.delete(pilot);
 	}
 }
