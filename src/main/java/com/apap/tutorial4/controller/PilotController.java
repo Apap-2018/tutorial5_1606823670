@@ -25,19 +25,22 @@ public class PilotController {
 	private PilotService pilotService;
 	
 	@RequestMapping("/")
-	private String home() {
+	private String home(Model model) {
+		model.addAttribute("title", "APAP");
 		return "home";
 	}
 	
 	@RequestMapping(value = "/pilot/add", method = RequestMethod.GET)
 	private String add(Model model) {
 		model.addAttribute("pilot", new PilotModel());
+		model.addAttribute("title", "Add Pilot");
 		return "addPilot";
 	}
 	
 	@RequestMapping(value = "/pilot/add", method = RequestMethod.POST)
-	private String addPilotSubmit(@ModelAttribute PilotModel pilot) {
+	private String addPilotSubmit(@ModelAttribute PilotModel pilot, Model model) {
 		pilotService.addPilot(pilot);
+		model.addAttribute("title", "Add Pilot");
 		return "add";
 	}
 	
@@ -50,12 +53,14 @@ public class PilotController {
 		List<FlightModel> listFlight = pilotService.getPilotDetailByLicenseNumber(licenseNumber).getPilotFlight();
 		
 		model.addAttribute("listFlight", listFlight);
+		model.addAttribute("title", "View Pilot");
 		return "view-pilot";
 	}
 	
 	@RequestMapping(value = "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)
-	public String delete(@PathVariable("licenseNumber") PilotModel pilot) {
+	public String delete(@PathVariable("licenseNumber") PilotModel pilot, Model model) {
 		pilotService.deletePilotByLicenseNumber(pilot.getLicenseNumber());
+		model.addAttribute("title", "Delete Pilot");
 		return "delete";
 	}
 	

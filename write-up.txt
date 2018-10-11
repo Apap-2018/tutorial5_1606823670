@@ -1,0 +1,29 @@
+WRITE-UP
+
+CONDITIONAL EXPRESSION
+- menambahkan if dan unless pada tag, atau bisa langsung dengan menuliskan condition pada 1 line, dan jawaban true pada sebelah kanan dan false pada sebelah kiri.
+
+STATIC FILE
+- menambahkan file css dan js pada folder static
+- berguna untuk membuat halaman web menjadi lebih menarik karena adanya template dari css dan js yang dapat kita ubah.
+
+FRAGMENT
+- digunakan untuk mereuse code pada 1 html yang dapat digunakan untuk html lainnya.
+- membuat folder fragments pada folder templates, dan fragment.html pada bagian dalamnya yang akan digunakan pada html lain.
+- diimplementasikan pada html lain dengan cara menulis th:include dan nama fragment sesuai dengan yang tertulis pada fragment.html
+
+ERROR HANDLER
+- digunakan untuk menampilkan webpage dengan tampilan lebih ramah untuk user ketika dihadapi dengan error.
+- membuat folder error di dalam folder templates
+- membuat file html sesuai kode error, contoh : 404.html
+
+FORM HANDLER
+- berguna untuk menghandle form yang bisa langsung mengisi form lebih dari 1, contoh : checkbox
+- mengubah view-pilot.html dan flightController.java
+
+LATIHAN
+1. Mengubah "APAP" pada navbar sesuai dengan nama dari halaman yang sedang diakses.
+- menambahkan th:text=${title} pada fragment.html dan kemudian mengaplikasikan untuk menambahkan model.attribute pada beberapa html dan disesuaikan dengan nama dari halaman tersebut. Sehingga ketika mengakses halaman tertentu akan sesuai nama halaman tersebut.
+
+Tambahan:
+- mengubah link dari home pada navbar, sehingga ketika diklik akan mendirect ke home kembali.

@@ -10,9 +10,6 @@
 
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-
-	<td><a th:href="@{|/flight/add/${pilot.licenseNumber}|}">Add Flight</a></td>
-	<td><a th:href="@{|/pilot/delete/${pilot.licenseNumber}|}">Delete Pilot</a></td>
 	
 	<h3 th:text="'Pilot License Number : ' + ${pilot.licenseNumber}"></h3>
 	<h3 th:text="'Name : ' + ${pilot.name}"></h3>
@@ -25,9 +22,10 @@
 	<form th:action="@{'/pilot/delete/' +${pilot.id}}">
 		<button type="submit">Delete Pilot</button>
 	</form>
+	<br></br>
 	
 	<form th:action="@{/flight/delete}" th:object="${pilot}" method="POST">
-		<table border="I">
+		<table border="1">
 			<caption>Flights</caption>
 			<thead>
 				<tr>

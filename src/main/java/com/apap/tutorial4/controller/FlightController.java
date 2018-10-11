@@ -33,12 +33,14 @@ public class FlightController {
 		flight.setPilot(pilot);
 		
 		model.addAttribute("flight", flight);
+		model.addAttribute("title", "Add Flight");
 		return "addFlight";
 	}
 	
 	@RequestMapping(value = "/flight/add", method = RequestMethod.POST)
-	private String addFlightSubmit(@ModelAttribute FlightModel flight) {
+	private String addFlightSubmit(@ModelAttribute FlightModel flight, Model model) {
 		flightService.addFlight(flight);
+		model.addAttribute("title", "Add Flight");
 		return "add";
 	}
 	
@@ -48,6 +50,7 @@ public class FlightController {
 			flightService.deleteFlightById(flight.getId());
 		}
 		
+		model.addAttribute("title", "Delete Flight");
 		return "delete";
 	}
 }
